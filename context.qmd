@@ -1,0 +1,92 @@
+---
+title: "The historical context"
+execute: 
+  echo: false
+---
+
+The advance of the armies of [Alexander Farnese](https://en.wikipedia.org/wiki/Alexander_Farnese,_Duke_of_Parma) into Flanders from 1580, culminating in the capture of Antwerp in August of 1585 precipitated a period of mass mobility as both rebels and loyalists traveled to avoid the dangers of war and those associated with the Revolt were eventually forced into exile. The troubles began much before 1585.[@Arnade_2008; @Soen_2012] Already in the 1570s the widow Elizabeth Zeghers sent her three daughters and youngest son to live in Cologne. She returned to Antwerp with her children in 1582 except for her eldest daughter Anna, who had married and remained in Cologne. Meanwhile, many of the women in the Della Faille family left Antwerp upon the approach of Farnese. Anna della Faille retreated to Haarlem with her husband. Her sister-in-law, Sybille Stecher, who was pregnant at the time, left for Dordrecht, while her husband, Marten della Faille, remained in Antwerp. In the spring of 1584 Hester della Faille left Antwerp for Haarlem with her older brother Jacques and his wife Josina Hamels. It was during her stay in Holland that Hester became engaged to and married Daniel van der Meulen, who was serving as a representative of Antwerp at the rebellious States General in Holland, thus bringing the Van der Meulen and Della Faille families together. After a brief period in Haarlem, Daniel and Hester moved to Delft, where the States General was meeting.
+
+As Farnese’s armies closed in on Antwerp all of the individuals in the Van der Meulen and Della Faille families discussed plans of what to do if and when the city fell. Marten della Faille was a strong loyalist, who hoped that the continued success of Farnese would lead to a general peace. He wrote to his wife Sybille in Dordrecht as early as the end of May 1585 about the successes of Farnese and his hope that Sybille would soon be able to return to Antwerp. Marten also wrote to his sister Anna in Haarlem to try to coordinate the travel of his wife, his sister, and his brother-in-law back to Antwerp. Over the course of the correspondence Marten put forward multiple people who might be sent to assist Sybille in traveling back down to Antwerp with her children, including their daughter who was born in Dordrecht in June 1585. However, in the end it seems that Sybille largely coordinated her own journey back to Antwerp with the help of family members then present in Holland. Marten was still unclear of her exact route in early September as she began her journey mere weeks after Farnese took control of the city. Sybille probably did not travel unaccompanied, but she was more than capable of organizing the travel of her family back to Antwerp.[@Pipkin_2022]
+
+The below map shows the major events in the reconquest of Farnese in the first half of the 1580s. It includes the plotting code used to make the map.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+library(tidyverse)
+library(here)
+library(sf)
+library(glue)
+library(terra)
+library(tidyterra)
+library(ggtext)
+library(paletteer)
+library(ggrepel)
+```
+
+```{r}
+#| label: data
+
+# Load base map data
+lc_raster <- rast(here("data", "lowcountries.tif"))
+rivers <- st_read(here("data", "rivers.geojson"), quiet = TRUE)
+oceans <- st_read(here("data", "oceans.geojson"), quiet = TRUE)
+locations <- st_read(here("data", "locations.geojson"), quiet = TRUE)
+
+# Provide labels for trade network
+# tribbe provides another interface to make a tibble
+reconquest <- tribble(
+  ~location,    ~date,
+  "Kortrijk",   1580,
+  "Breda",      1580,
+  "Oudenaarde", 1582,
+  "Lier",       1582,
+  "Hulst",      1583,
+  "Zutphen",    1583,
+  "Bruges",     1584,
+  "Ghent",      1584,
+  "Brussels",   1585,
+  "Mechelen",   1585,
+  "Antwerp",    1585,
+  "Nijmegen",   1585
+)
+
+reconquest <- reconquest |>
+  left_join(locations, by = join_by("location" == "address")) |> 
+  st_as_sf() # reconvert tibble back to sf object after join
+```
+
+:::{.column-page}
+
+```{r}
+#| label: fig-reconquest
+#| echo: true
+#| fig-width: 10
+#| fig-asp: 0.618
+#| fig-align: left
+#| fig-alt: |
+#|   A map of the Low Countries showing the reconquest of Farnese.
+
+ggplot(data = reconquest) +
+  geom_spatraster(data = lc_raster, alpha = 0.6,
+                  show.legend = FALSE) +
+  scale_fill_whitebox_c(palette = "atlas", direction = 1) +
+  geom_sf(data = oceans, color = NA, fill = "lightblue") +
+  geom_sf(data = rivers, color = "lightblue", size = 0.4) +
+  geom_sf(aes(color = factor(date)), size = 4) +
+  geom_text_repel(aes(x = long, y = lat, label = location),
+                  size = 3) +
+  scale_color_brewer(palette = "RdPu") + 
+  coord_sf(xlim = c(3400000, 3900000),
+           ylim = c(2600000, 3000000),
+           expand = FALSE, datum = NA) +
+  labs(title = "The reconquest of Farnese, 1580–1585",
+       color = "Year of conquest") +
+  theme_void() +
+  theme(plot.title = element_text(size = 18),
+        legend.position = "top",
+        legend.direction = "horizontal")
+```
+
+:::
