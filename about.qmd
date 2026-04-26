@@ -1,9 +1,11 @@
 ---
 title: "About"
+suppress-bibliography: false
 ---
 
-About this site
+This repository provides an example Quarto website for a small-scale Digital Humanities project.  It is meant to be used as an example for [History 5444: Digital History Methods (Spring 20026)](https://jessesadler.github.io/vt5444s26/).
 
-```{r}
-1 + 1
-```
+## Bibliography
+
+::: {#refs}
+:::

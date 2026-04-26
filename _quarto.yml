@@ -4,9 +4,9 @@ project:
 website:
   title: "Female Travel and Mobility during the Dutch Revolt"
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
+    right: # have links to pages begin from right ride
+      - href: index.qmd # file to be used for homepage
+        text: Home # text to be used for link to enable title of page to be different
       - context.qmd # Add another page
       - about.qmd
 
@@ -14,9 +14,13 @@ format:
   html:
     theme:
       - cosmo
-      - brand
     css: styles.scss
     toc: true
+bibliography: references.bib
+csl: https://www.zotero.org/styles/chicago-fullnote-bibliography
+suppress-bibliography: true
+nocite: |
+  @*
 
 
 
