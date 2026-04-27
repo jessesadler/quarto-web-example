@@ -4,6 +4,7 @@ project:
 execute:
   freeze: auto
 
+# Website structure
 website:
   title: "Female Travel and Mobility during the Dutch Revolt"
   navbar:
@@ -22,6 +23,7 @@ website:
         text: Visualizing female travel
       - about.qmd # About page
 
+# Options applied to all pages
 format:
   html:
     theme:
@@ -29,10 +31,15 @@ format:
       - styles.scss
     toc: true
 
+# Set default to not show the R code
+execute: 
+  echo: false
+
 # Settings for citations and bibliography
 bibliography: references.bib
 csl: https://www.zotero.org/styles/chicago-fullnote-bibliography
 suppress-bibliography: true
+# Place all citations in bibliography even if not in a footnote.
 nocite: |
   @*
 

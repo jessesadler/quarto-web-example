@@ -1,8 +1,6 @@
 ---
 title: "The movements of the women in the families"
 subtitle: "Visualizing female travel"
-execute: 
-  echo: false
 ---
 
 ```{r}
@@ -64,6 +62,8 @@ movement_graph <- tbl_graph(nodes = locations,
                             edges = movements,
                             directed = TRUE)
 ```
+
+There were three distinct periods of movement for the Della Faille and Van der Meulen siblings centered around the Dutch Revolt and the conquest of Antwerp by Farnese in 1584.
 
 ## Before the conquest of Antwerp
 

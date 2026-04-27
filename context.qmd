@@ -1,7 +1,5 @@
 ---
 title: "The historical context"
-execute: 
-  echo: false
 ---
 
 The advance of the armies of [Alexander Farnese](https://en.wikipedia.org/wiki/Alexander_Farnese,_Duke_of_Parma) into Flanders from 1580, culminating in the capture of Antwerp in August of 1585 precipitated a period of mass mobility as both rebels and loyalists traveled to avoid the dangers of war and those associated with the Revolt were eventually forced into exile. The troubles began much before 1585.[@Arnade_2008; @Soen_2012] 
