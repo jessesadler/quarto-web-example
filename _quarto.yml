@@ -9,6 +9,7 @@ execute:
 # Website structure
 website:
   title: "Female Travel and Mobility during the Dutch Revolt"
+  site-url: https://jessesadler.github.io/quarto-web-example/
   navbar:
     right: # have links to pages begin from right ride
       - href: index.qmd # file to be used for homepage
@@ -24,6 +25,8 @@ website:
       - href: movements.qmd
         text: Visualizing female travel
       - about.qmd # About page
+      - icon: github # Link to the GitHub page
+        href: https://github.com/jessesadler/quarto-web-example
 
 # Options applied to all pages
 format:
