@@ -2,9 +2,7 @@
 title: "The historical context"
 ---
 
-The advance of the armies of [Alexander Farnese](https://en.wikipedia.org/wiki/Alexander_Farnese,_Duke_of_Parma) into Flanders from 1580, culminating in the capture of Antwerp in August of 1585 precipitated a period of mass mobility as both rebels and loyalists traveled to avoid the dangers of war and those associated with the Revolt were eventually forced into exile. The troubles began much before 1585.[@Arnade_2008; @Soen_2012] 
-
-The below map shows the major events in the reconquest of Farnese in the first half of the 1580s. It includes the plotting code used to make the map.
+The advance of the armies of [Alexander Farnese](https://en.wikipedia.org/wiki/Alexander_Farnese,_Duke_of_Parma) into Flanders from 1580, culminating in the capture of Antwerp in August of 1585 precipitated a period of mass mobility as both rebels and loyalists traveled to avoid the dangers of war and those associated with the Revolt were eventually forced into exile.[@Arnade_2008; @Soen_2012] 
 
 ```{r}
 #| label: setup
@@ -19,6 +17,7 @@ library(tidyterra)
 library(ggtext)
 library(paletteer)
 library(ggrepel)
+library(gt)
 ```
 
 ```{r}
@@ -28,6 +27,7 @@ library(ggrepel)
 lc_raster <- rast(here("data", "lowcountries.tif"))
 rivers <- st_read(here("data", "rivers.geojson"), quiet = TRUE)
 oceans <- st_read(here("data", "oceans.geojson"), quiet = TRUE)
+lakes <- st_read(here("data", "lakes.geojson"), quiet = TRUE)
 locations <- st_read(here("data", "locations.geojson"), quiet = TRUE)
 
 # Data on conquest
@@ -48,10 +48,24 @@ reconquest <- tribble(
   "Nijmegen",   1585
 )
 
-reconquest <- reconquest |>
+reconquest_sf <- reconquest |>
   left_join(locations, by = join_by("location" == "address")) |> 
   st_as_sf() # reconvert tibble back to sf object after join
 ```
+
+The major towns captured by Farnese are noted in the below table, which uses the [gt package](https://gt.rstudio.com/index.html).
+
+```{r}
+#| label: tbl-reconquest
+gt(reconquest) |> 
+  tab_header(title = "The reconquest of Alexander Farnese") |> 
+  cols_label(
+    location = "City",
+    date = "Year"
+  )
+```
+
+The below map shows the major events in the reconquest of Farnese in the first half of the 1580s. It includes the plotting code used to make the map.
 
 :::{.column-page}
 
@@ -63,13 +77,15 @@ reconquest <- reconquest |>
 #| fig-asp: 0.618
 #| fig-align: left
 #| fig-alt: |
-#|   A map of the Low Countries showing the reconquest of Farnese.
+#|   A map of the Low Countries showing the reconquest of Farnese
+#|   with the towns captured between 1580 and 1585.
 
-ggplot(data = reconquest) +
+ggplot(data = reconquest_sf) +
   geom_spatraster(data = lc_raster, alpha = 0.6,
                   show.legend = FALSE) +
   scale_fill_whitebox_c(palette = "atlas", direction = 1) +
   geom_sf(data = oceans, color = NA, fill = "lightblue") +
+  geom_sf(data = lakes, color = NA, fill = "lightblue") +
   geom_sf(data = rivers, color = "lightblue", size = 0.4) +
   geom_sf(aes(color = factor(date)), size = 4) +
   geom_text_repel(aes(x = long, y = lat, label = location),
