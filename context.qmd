@@ -65,7 +65,7 @@ gt(reconquest) |>
   )
 ```
 
-The below map shows the major events in the reconquest of Farnese in the first half of the 1580s. It includes the plotting code used to make the map.
+The below map shows the major events in the reconquest of Farnese in the first half of the 1580s. It includes the plotting code used to make the map. Hopefully it is helpful.
 
 :::{.column-page}
 
