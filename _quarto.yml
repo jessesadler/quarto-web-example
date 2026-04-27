@@ -11,7 +11,7 @@ website:
       - href: index.qmd # file to be used for homepage
         text: Home # text to be used for link to enable title of page to be different
       - text: The women
-        menu:
+        menu: # Create drop-down menu with the following pages
          - href: anna-df.qmd
          - href: hester-df.qmd
          - href: zeghers.qmd
@@ -20,14 +20,16 @@ website:
       - context.qmd # Add another page
       - href: movements.qmd
         text: Visualizing female travel
-      - about.qmd
+      - about.qmd # About page
 
 format:
   html:
     theme:
       - cosmo
-    css: styles.scss
+      - styles.scss
     toc: true
+
+# Settings for citations and bibliography
 bibliography: references.bib
 csl: https://www.zotero.org/styles/chicago-fullnote-bibliography
 suppress-bibliography: true
