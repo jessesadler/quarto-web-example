@@ -1,0 +1,17 @@
+{
+  "hash": "7945844068a73e9d2822a1bf5dd8100c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Early modern female travel\"\nsubtitle: \"An example Quarto website for digital projects\"\nexecute: \n  echo: false\n  message: false\n  warning: false\n---\n\n::: {.callout-note}\nThis website is meant to serve as an example of a small-scale digital humanities project using [Quarto](https://quarto.org/). For more resources on digital humanities and Quarto see the syllabus for [History 5444: Digital History Methods (20026)](https://jessesadler.github.io/vt5444s26/).\n:::\n\nThe Dutch Revolt sent tens of thousands of religious, political, and economic refugees scurrying across Europe at the end of the sixteenth century and the first decade of the seventeenth century until the Twelve Year Truce of 1609 brought a period of greater stability. Women made up a substantial portion of those who left their homes during this period and often continued to have highly mobile lives as they and their families sought new places to call home or traveled to visit friends and family or conduct business in the midst of ever changing political, religious, and economic circumstances of the last decades of the 16th century. This website will  delve into the experience of women as they traveled across Europe in the early stages of the Dutch Revolt using correspondence between the siblings of two intermarried families: the Van der Meulens and Della Failles.\n\nTravel was a defining feature of the life of a merchant in the early modern period, even if merchants of the scale of the Van der Meulens and Della Failles—the families under study here—did not travel with their goods. Instead, these merchants depended upon a vast network of factors, assistants, and other merchants to purchase, move, and sell their goods. But this obviously did not preclude frequent travel to inspect goods, check in on ships, attend fairs, visit friends and family members, or moving to different cities. For all of these reasons, travel was a well-known experience to both men and women in mercantile families and did not need to be explained within letters. Most discussion about individual experiences seems to have been left to face-to-face discussions following a journey. However, discussion about plans to travel, about the desire to travel, and about the dangers of travel were ever present in the letters family members sent to each other.\n\n\n::: {.cell}\n\n:::\n\n\n\n::: {.cell}\n\n:::\n\n\n:::{.callout-note}\nThe following figure uses `{.column-page}` to make the area for the figure larger. See page on [article layout](https://quarto.org/docs/authoring/article-layout.html) in the Quarto documentation.\n:::\n\n:::{.column-page}\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](index_files/figure-html/fig-trade-network-1.png){#fig-trade-network fig-alt='A map of western Europe with points representing the two families\\' home\nin Antwerp; their residences in Bremen, Cologne, Frankfurt, Stade, Utrecht,\nLeiden, Dordrecht, and Haarlem; and their main places of trade in London,\nVenice, Verona, Naples, Amsterdam, Middelburg, Hamburg, Strasbourg,\nAugsburg, Nuremberg, Seville, Lisbon, Kortrijk, and Valenciennes.' width=960}\n:::\n:::\n\n\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

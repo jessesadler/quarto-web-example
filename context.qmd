@@ -1,0 +1,89 @@
+---
+title: "The historical context"
+---
+
+The advance of the armies of [Alexander Farnese](https://en.wikipedia.org/wiki/Alexander_Farnese,_Duke_of_Parma) into Flanders from 1580, culminating in the capture of Antwerp in August of 1585 precipitated a period of mass mobility as both rebels and loyalists traveled to avoid the dangers of war and those associated with the Revolt were eventually forced into exile. The troubles began much before 1585.[@Arnade_2008; @Soen_2012] 
+
+The below map shows the major events in the reconquest of Farnese in the first half of the 1580s. It includes the plotting code used to make the map.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+library(tidyverse)
+library(here)
+library(sf)
+library(glue)
+library(terra)
+library(tidyterra)
+library(ggtext)
+library(paletteer)
+library(ggrepel)
+```
+
+```{r}
+#| label: data
+
+# Load base map data
+lc_raster <- rast(here("data", "lowcountries.tif"))
+rivers <- st_read(here("data", "rivers.geojson"), quiet = TRUE)
+oceans <- st_read(here("data", "oceans.geojson"), quiet = TRUE)
+locations <- st_read(here("data", "locations.geojson"), quiet = TRUE)
+
+# Data on conquest
+# tribbe provides another interface to make a tibble
+reconquest <- tribble(
+  ~location,    ~date,
+  "Kortrijk",   1580,
+  "Breda",      1580,
+  "Oudenaarde", 1582,
+  "Lier",       1582,
+  "Hulst",      1583,
+  "Zutphen",    1583,
+  "Bruges",     1584,
+  "Ghent",      1584,
+  "Brussels",   1585,
+  "Mechelen",   1585,
+  "Antwerp",    1585,
+  "Nijmegen",   1585
+)
+
+reconquest <- reconquest |>
+  left_join(locations, by = join_by("location" == "address")) |> 
+  st_as_sf() # reconvert tibble back to sf object after join
+```
+
+:::{.column-page}
+
+```{r}
+#| label: fig-reconquest
+#| echo: true
+#| message: false
+#| fig-width: 10
+#| fig-asp: 0.618
+#| fig-align: left
+#| fig-alt: |
+#|   A map of the Low Countries showing the reconquest of Farnese.
+
+ggplot(data = reconquest) +
+  geom_spatraster(data = lc_raster, alpha = 0.6,
+                  show.legend = FALSE) +
+  scale_fill_whitebox_c(palette = "atlas", direction = 1) +
+  geom_sf(data = oceans, color = NA, fill = "lightblue") +
+  geom_sf(data = rivers, color = "lightblue", size = 0.4) +
+  geom_sf(aes(color = factor(date)), size = 4) +
+  geom_text_repel(aes(x = long, y = lat, label = location),
+                  size = 3) +
+  scale_color_brewer(palette = "RdPu") + 
+  coord_sf(xlim = c(3400000, 3900000),
+           ylim = c(2600000, 3000000),
+           expand = FALSE, datum = NA) +
+  labs(title = "The reconquest of Farnese, 1580–1585",
+       color = "Year of conquest") +
+  theme_void() +
+  theme(plot.title = element_text(size = 18),
+        legend.position = "top",
+        legend.direction = "horizontal")
+```
+
+:::

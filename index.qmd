@@ -1,0 +1,110 @@
+---
+title: "Early modern female travel"
+subtitle: "An example Quarto website for digital projects"
+execute: 
+  echo: false
+  message: false
+  warning: false
+---
+
+::: {.callout-note}
+This website is meant to serve as an example of a small-scale digital humanities project using [Quarto](https://quarto.org/). For more resources on digital humanities and Quarto see the syllabus for [History 5444: Digital History Methods (20026)](https://jessesadler.github.io/vt5444s26/).
+:::
+
+The Dutch Revolt sent tens of thousands of religious, political, and economic refugees scurrying across Europe at the end of the sixteenth century and the first decade of the seventeenth century until the Twelve Year Truce of 1609 brought a period of greater stability. Women made up a substantial portion of those who left their homes during this period and often continued to have highly mobile lives as they and their families sought new places to call home or traveled to visit friends and family or conduct business in the midst of ever changing political, religious, and economic circumstances of the last decades of the 16th century. This website will  delve into the experience of women as they traveled across Europe in the early stages of the Dutch Revolt using correspondence between the siblings of two intermarried families: the Van der Meulens and Della Failles.
+
+Travel was a defining feature of the life of a merchant in the early modern period, even if merchants of the scale of the Van der Meulens and Della Failles—the families under study here—did not travel with their goods. Instead, these merchants depended upon a vast network of factors, assistants, and other merchants to purchase, move, and sell their goods. But this obviously did not preclude frequent travel to inspect goods, check in on ships, attend fairs, visit friends and family members, or moving to different cities. For all of these reasons, travel was a well-known experience to both men and women in mercantile families and did not need to be explained within letters. Most discussion about individual experiences seems to have been left to face-to-face discussions following a journey. However, discussion about plans to travel, about the desire to travel, and about the dangers of travel were ever present in the letters family members sent to each other.
+
+```{r}
+#| label: setup
+library(tidyverse)
+library(here)
+library(sf)
+library(glue)
+library(terra)
+library(tidyterra)
+library(ggtext)
+library(paletteer)
+library(ggrepel)
+```
+
+```{r}
+#| label: data
+
+# Load base map data
+euro_raster <- rast(here("data", "euro.tif"))
+rivers <- st_read(here("data", "rivers.geojson"), quiet = TRUE)
+oceans <- st_read(here("data", "oceans.geojson"), quiet = TRUE)
+locations <- st_read(here("data", "locations.geojson"), quiet = TRUE)
+
+# Provide labels for trade network
+home <- tibble(
+  location = "Antwerp",
+  type = "Home"
+)
+residence <- tibble(
+  location = c("Bremen", "Cologne", "Frankfurt", "Stade",
+               "Utrecht", "Leiden", "Dordrecht", "Haarlem"),
+  type = "Residence"
+)
+trade <- tibble(
+  location = c("London", "Venice", "Verona", "Naples", "Amsterdam",
+               "Middelburg", "Hamburg", "Strasbourg", "Augsburg", "Nuremberg",
+               "Seville", "Lisbon", "Kortrijk", "Valenciennes"),
+  type = "Trade"
+)
+
+trade_network <- bind_rows(home, residence, trade) |>
+  left_join(locations, by = join_by("location" == "address")) |> 
+  st_as_sf() # reconvert tibble back to sf object after join
+```
+
+:::{.callout-note}
+The following figure uses `{.column-page}` to make the area for the figure larger. See page on [article layout](https://quarto.org/docs/authoring/article-layout.html) in the Quarto documentation.
+:::
+
+:::{.column-page}
+
+```{r}
+#| label: fig-trade-network
+#| fig-width: 10
+#| fig-asp: 0.618
+#| fig-alt: |
+#|   A map of western Europe with points representing the two families' home
+#|   in Antwerp; their residences in Bremen, Cologne, Frankfurt, Stade, Utrecht,
+#|   Leiden, Dordrecht, and Haarlem; and their main places of trade in London,
+#|   Venice, Verona, Naples, Amsterdam, Middelburg, Hamburg, Strasbourg,
+#|   Augsburg, Nuremberg, Seville, Lisbon, Kortrijk, and Valenciennes.
+
+# Get the palette hex values to use for the styled titles
+hex <- paletteer_d("colorblindr::OkabeIto", n = 3)
+
+styled_title <- glue("**Network of the Van der Meulen and Della Faille families**")
+styled_subtitle <- glue(
+  "Their home in <span style='color:{hex[[1]]};'>Antwerp</span>,
+  the <span style='color:{hex[[2]]};'>places they resided</span>,
+  and important locations in their
+  <span style='color:{hex[[3]]};'>trade networks</span>"
+)
+
+ggplot(data = trade_network) +
+  geom_spatraster(data = euro_raster, alpha = 0.6) +
+  geom_sf(data = oceans, color = NA, fill = "lightblue") +
+  geom_sf(data = rivers, color = "lightblue", size = 0.1) +
+  geom_sf(aes(color = type), size = 2) +
+  geom_text_repel(aes(x = long, y = lat, label = location),
+                  size = 3) +
+  scale_fill_whitebox_c(palette = "atlas", direction = 1) +
+  scale_color_paletteer_d("colorblindr::OkabeIto") + 
+  coord_sf(xlim = c(2100000, 4700000),
+           ylim = c(1050000, 3400000),
+           expand = FALSE, datum = NA) +
+  labs(title = styled_title,
+       subtitle = styled_subtitle) +
+  theme_void() +
+  theme(legend.position = "none",
+        plot.title = element_markdown(size = 18),
+        plot.subtitle = element_markdown(size = 12, margin = margin(t = 5, b = 10)))
+```
+
+:::
