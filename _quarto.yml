@@ -8,6 +8,8 @@ website:
       - href: index.qmd # file to be used for homepage
         text: Home # text to be used for link to enable title of page to be different
       - context.qmd # Add another page
+      - href: movements.qmd
+        text: Visualizing femal travel
       - about.qmd
 
 format:
