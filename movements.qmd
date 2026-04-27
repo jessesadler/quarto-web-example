@@ -74,6 +74,10 @@ Already in the 1570s the widow Elizabeth Zeghers sent her three daughters and yo
 #| message: false
 #| fig-width: 10
 #| fig-asp: 0.618
+#| fig-cap: "Before the siege of Antwerp."
+#| fig-alt: |
+#|   A map of the Low Countries showing the movement of
+#|   individuals before the siege of Antwerp in 1585.
 
 locs <- c("Antwerp", "Dordrecht", "Delft", "Haarlem",
           "Amsterdam", "Middelburg", "Utrecht")
@@ -103,7 +107,7 @@ ggraph(graph = before, x = long, y = lat) +
   coord_sf(xlim = c(3500000, 3800000),
            ylim = c(2700000, 2900000),
            expand = FALSE, datum = NA) +
-  labs(title = "The reconquest of Farnese, 1580–1585",
+  labs(title = "Before the siege of Antwerp",
        edge_color = "Individual") +
   theme_void() +
   theme(plot.title = element_text(size = 18),
@@ -125,6 +129,13 @@ The crisis of 1585 and the moving across borders at a time of war led the Della 
 #| message: false
 #| fig-width: 10
 #| fig-asp: 0.618
+#| fig-cap: "Directly after the conquest of Antwerp, 1585."
+#| fig-alt: |
+#|   A map of northwest Europe showing the movement of
+#|   individuals directly after the conquest of Antwerp in 1585.
+#|   Map show Sybille Stecher and Anna della Faille returning to
+#|   Antwerp and the movement of the Van der Meulens and Hester
+#|   della Faille to Bremen.
 
 locs_during <- c(
   "Antwerp", "Dordrecht", "Delft", "Haarlem", "Cologne",
@@ -177,6 +188,11 @@ Of course, their hoped for return to Antwerp never materialized. Only Hester and
 #| message: false
 #| fig-width: 10
 #| fig-asp: 0.618
+#| fig-cap: "Travel and instability after 1585."
+#| fig-alt: |
+#|   A map of tnorthwest Europe showing the movement of
+#|   individuals between German cities and eventually to
+#|   the Dutch Republic in Holland.
 
 locs_after <- c(
   "Antwerp", "Haarlem", "Cologne", "Amsterdam", "Middelburg",

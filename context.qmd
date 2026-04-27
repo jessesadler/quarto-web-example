@@ -76,6 +76,7 @@ The below map shows the major events in the reconquest of Farnese in the first h
 #| fig-width: 10
 #| fig-asp: 0.618
 #| fig-align: left
+#| fig-cap: "The reconquest of Farnese, 1580–1585."
 #| fig-alt: |
 #|   A map of the Low Countries showing the reconquest of Farnese
 #|   with the towns captured between 1580 and 1585.

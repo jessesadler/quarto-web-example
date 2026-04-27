@@ -69,6 +69,7 @@ The following figure uses `{.column-page}` to make the area for the figure large
 #| label: fig-trade-network
 #| fig-width: 10
 #| fig-asp: 0.618
+#| fig-cap: "Trade network of the Van der Meulen and Della Faille families."
 #| fig-alt: |
 #|   A map of western Europe with points representing the two families' home
 #|   in Antwerp; their residences in Bremen, Cologne, Frankfurt, Stade, Utrecht,
