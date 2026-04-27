@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jessesadler.github.io/quarto-web-example/sarah-vdm.html</loc>
-    <lastmod>2026-04-27T01:47:41.649Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jessesadler.github.io/quarto-web-example/anna-df.html</loc>
-    <lastmod>2026-04-27T01:36:31.375Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jessesadler.github.io/quarto-web-example/about.html</loc>
-    <lastmod>2026-04-26T23:14:43.666Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jessesadler.github.io/quarto-web-example/anna-vdm.html</loc>
-    <lastmod>2026-04-27T01:45:23.078Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jessesadler.github.io/quarto-web-example/movements.html</loc>
-    <lastmod>2026-04-27T12:15:36.299Z</lastmod>
-  </url>
-  <url>
     <loc>https://jessesadler.github.io/quarto-web-example/hester-df.html</loc>
-    <lastmod>2026-04-27T01:40:59.423Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jessesadler.github.io/quarto-web-example/index.html</loc>
-    <lastmod>2026-04-27T01:21:59.813Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jessesadler.github.io/quarto-web-example/zeghers.html</loc>
-    <lastmod>2026-04-27T01:42:56.656Z</lastmod>
+    <lastmod>2026-04-27T12:46:52.834Z</lastmod>
   </url>
   <url>
     <loc>https://jessesadler.github.io/quarto-web-example/context.html</loc>
-    <lastmod>2026-04-27T12:14:08.365Z</lastmod>
+    <lastmod>2026-04-27T12:46:52.701Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jessesadler.github.io/quarto-web-example/about.html</loc>
+    <lastmod>2026-04-27T12:46:52.701Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jessesadler.github.io/quarto-web-example/anna-df.html</loc>
+    <lastmod>2026-04-27T12:46:52.701Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jessesadler.github.io/quarto-web-example/anna-vdm.html</loc>
+    <lastmod>2026-04-27T12:46:52.701Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jessesadler.github.io/quarto-web-example/movements.html</loc>
+    <lastmod>2026-04-27T12:46:52.834Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jessesadler.github.io/quarto-web-example/zeghers.html</loc>
+    <lastmod>2026-04-27T12:46:52.834Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jessesadler.github.io/quarto-web-example/index.html</loc>
+    <lastmod>2026-04-27T12:46:52.834Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jessesadler.github.io/quarto-web-example/sarah-vdm.html</loc>
+    <lastmod>2026-04-27T12:46:52.834Z</lastmod>
   </url>
 </urlset>
