@@ -170,6 +170,8 @@ The Van der Meulen and Della Faille siblings never resided in the same city afte
 
 Of course, their hoped for return to Antwerp never materialized. Only Hester and Josina of the women discussed in this paper who left Antwerp as exiles ever returned to Antwerp, but both did so only with the signing of the 12-Year Truce in 1609. Hester visited her brother Marten—who she had not seen since 1584—in 1610 and again in 1618, but none of the individuals moved back to Antwerp. The Van der Meulen and Della Faille siblings continued to live in different cities, Daniel and Hester moved to Leiden in 1591, where they came into closer contact with Jacques and Josina in Haarlem; Sara left Frankfurt for Bremen and then moved to Utrecht in 1598, while Andries and his wife Suzanne joined Sara in Utrecht in 1607. Thus, they were never able to solve the contradiction of the desire to live near each other and the economic logic of geographic distance combined with the crisis caused by the political and religious division of the Low Countries. But, if nothing else, this situation kept the discussion of travel at the heart of the close emotional bonds that tied family members together.
 
+:::{.column-page}
+
 ```{r}
 #| label: fig-after
 #| message: false
@@ -214,3 +216,4 @@ ggraph(graph = after, x = long, y = lat) +
         legend.direction = "horizontal")
 ```
 
+:::
