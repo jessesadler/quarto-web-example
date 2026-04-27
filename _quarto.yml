@@ -19,7 +19,7 @@ website:
          - href: sarah-vdm.qmd
       - context.qmd # Add another page
       - href: movements.qmd
-        text: Visualizing femal travel
+        text: Visualizing female travel
       - about.qmd
 
 format:
