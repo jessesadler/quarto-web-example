@@ -47,7 +47,7 @@ euro_bbox <- st_bbox(c(xmin = -11, xmax = 24, # Create the rectangle
                      crs = st_crs(4326)) |>
   st_as_sfc() |> # Make it a geometry column
   st_as_sf() # Make it an sf object with only a geometry column
-
+euro_bbox_3034 <- st_transform(euro_bbox, crs = "EPSG:3034")
 
 # Get the raster
 euro_raster <- get_elev_raster(st_as_sf(euro_bbox), z = 5)
@@ -123,7 +123,6 @@ ocean <- ne_download(scale = 10,
 
 # Reproject using euro_bbox
 ocean <- st_transform(ocean, crs = "EPSG:3034")
-euro_bbox_3034 <- st_transform(euro_bbox, crs = "EPSG:3034")
 euro_ocean <- st_crop(ocean, euro_bbox_3034)
 
 # Save as geojson
@@ -143,3 +142,18 @@ euro_rivers <- euro_rivers |>
 
 # Save as geojson
 st_write(euro_rivers, here("data", "rivers.geojson"), delete_dsn = TRUE)
+
+# Lakes: Need this for the ijsel
+lakes <- ne_download(scale = 10,
+                     category = "physical",
+                     type = "lakes")
+
+lakes <- st_transform(lakes, crs = "EPSG:3034")
+euro_lakes <- st_crop(lakes, euro_bbox_3034)
+
+# Clean column names
+euro_lakes <- euro_lakes |> 
+  select(featurecla, scalerank, name, name_en, ne_id, geometry)
+
+# Save as geojson
+st_write(euro_lakes, here("data", "lakes.geojson"), delete_dsn = TRUE)
