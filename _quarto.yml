@@ -3,6 +3,8 @@ project:
 
 execute:
   freeze: auto
+  echo: false # Set default to not show the R code
+  
 
 # Website structure
 website:
@@ -30,10 +32,6 @@ format:
       - cosmo
       - styles.scss
     toc: true
-
-# Set default to not show the R code
-execute: 
-  echo: false
 
 # Settings for citations and bibliography
 bibliography: references.bib
