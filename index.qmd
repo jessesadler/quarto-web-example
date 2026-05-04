@@ -3,7 +3,6 @@ title: "Early modern female travel"
 subtitle: "An example Quarto website for digital projects"
 execute: 
   echo: false
-  message: false
   warning: false
 ---
 
